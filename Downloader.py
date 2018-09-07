@@ -25,6 +25,10 @@ def download_insta_picture_from_post(url, download_path):
         filename = shortcode + '.jpg'
         path = download_path + filename
 
+        if post.is_video:
+            print('Post skipped because its a video', url)
+            return False
+
         with open(path, "wb") as handle:
             for data in tqdm(response.iter_content()):
                 handle.write(data)
