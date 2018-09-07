@@ -3,7 +3,6 @@ from instaloader import Post
 from tqdm import tqdm
 import pandas as pd
 import requests
-import sys
 import os
 
 
@@ -43,7 +42,7 @@ def download_insta_images(csv_file, download_path):
     check_create_path(download_path)
     inst_data = pd.read_csv(csv_file, delimiter=';')
     for url in inst_data['url']:
-        download_insta_picture_from_post(url)
+        download_insta_picture_from_post(url, download_path)
 
 
 # Example
