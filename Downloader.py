@@ -4,6 +4,7 @@ from tqdm import tqdm
 import pandas as pd
 import requests
 import os
+import sys
 
 
 def check_create_path(path):
@@ -24,17 +25,13 @@ def download_insta_picture_from_post(url, download_path):
         filename = shortcode + '.jpg'
         path = download_path + filename
 
-        if not post.url.endswith('.jpg'):
-            print('File is not JPG')
-            return False
-
         with open(path, "wb") as handle:
             for data in tqdm(response.iter_content()):
                 handle.write(data)
 
         return True
     except:
-        print('Could not download file')
+        print('Could not download file', sys.exc_info()[0], url)
         return False
 
 
